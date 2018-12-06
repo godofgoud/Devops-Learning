@@ -1,0 +1,16 @@
+# Create a new resource group.
+$resourceGroup = "teststoragerg"
+New-AzureRmResourceGroup -Name $resourceGroup -Location $location 
+
+# Set the name of the storage account and the SKU name. 
+$storageAccountName = "testpshstorage"
+$skuName = "Standard_LRS"
+
+# Create the storage account.
+$storageAccount = New-AzureRmStorageAccount -ResourceGroupName $resourceGroup `
+  -Name $storageAccountName `
+  -Location $location `
+  -SkuName $skuName
+
+# Retrieve the context. 
+$ctx = $storageAccount.Context
